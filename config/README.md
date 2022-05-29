@@ -7,7 +7,12 @@ content:
 
 ```
 {
-  "coinmarketcap_apikey": "your_coinmarketcap_key_here"
+  "coinmarketcap_apikey": "your_coinmarketcap_key_here",
+  "bscscan_apikey": "your_bscscan_key_here",
+  "etherscan_apikey": "your_etherscan_key_here",
+  "ftmscan_apikey": "your_ftmscan_key_here",
+  "moonriverscan_apikey": "your_moonriverscan_key_here",
+  "polygonscan_apikey": "your_plygonscan_key_here"
 }
 ```
 

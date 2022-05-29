@@ -34,28 +34,39 @@ class CoinGecko(object):
 
     def get_prices(self):
         prices = []
-        logger.debug(f"\nList of chains to query in CoinGecko: {self._chains}\n")
+        logger.debug(f"List of chains to query in CoinGecko: {self._chains}")
         for chain in self._chains:
             token_list_for_chain = ""
             for token in self._chains[chain]:
-                logger.debug(f"Including token {token} in the list.\n")
+                # logger.debug(f"Including token {token} in the list.")
                 token_list_for_chain += token['address'] + ','
-            if len(token_list_for_chain) > 0:
+            if len(token_list_for_chain) > 1:
                 token_list_for_chain = token_list_for_chain[:-1]    # remove last comma
                 logger.info(f"Requesting CoinGecko to provide prices in {token['chain_id']} chain "
-                            f"for {token_list_for_chain}\n")
-                pcs = self._api.get_token_price(id=token['chain_id'],
+                            f"for {token_list_for_chain}")
+                cgk = self._api.get_token_price(id=token['chain_id'],
                                           contract_addresses=token_list_for_chain,
                                           vs_currencies='usd',
                                           include_market_cap=True,
                                           include_24hr_vol=True,
                                           include_24hr_change=True,
                                           include_last_updated_at=True)
+                logger.debug(f"Response from Coingecko: {cgk}")
                 i = 0
-                for item in pcs:
-                    pcs[item]['address'] = item
-                    pcs[item]['name'] = self._chains[chain][i]['token']
-                    i += 1
-                    prices.append(pcs[item])
-        logger.debug(f"\nPrices returned by CoinGecko: {prices}\n")
+                for key in cgk:
+                    # logger.debug(f"Iteration for key: {key}")
+                    cgk[key]['address'] = key
+                    # skip all the tokens that did not get a quote from coingecko
+                    for j in range(0, len(self._chains[chain]) - 1):
+                        # logger.debug(f"(i, j) = ({i}, {j}) - Comparing {key} to {self._chains[chain][j]['address']}")
+                        if key.upper() != self._chains[chain][j]['address'].upper():
+                            # logger.debug(f"value of j = {j} ignored")
+                            continue
+                        else:
+                            # logger.debug(f"value of i = {j}")
+                            i = j
+                            break
+                    cgk[key]['name'] = self._chains[chain][i]['token']
+                    prices.append(cgk[key])
+        logger.debug(f"Prices returned by CoinGecko: {prices}")
         return prices
