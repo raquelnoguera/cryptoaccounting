@@ -1,11 +1,13 @@
 '''!
 This script get the current price for tokens.
 
-The list of tokens can be specify in two ways:
+The list of tokens can be specified in two ways:
 
 1. via the tokens.json file in the root directory.
-    In this case, the script will look for the prices of the tokens in this list and return a
-2. providing an Ethereum compatible wallet address. In this case, the
+    In this case, the script will look for the prices of the tokens in this list and return a csv file with an
+    row for each entry in the list that could be retrieved.
+2. providing an Ethereum compatible wallet address. In this case, the script will check which tokens this wallet has in
+   different blockchains and return a csv file with the results.
 '''
 
 import sys

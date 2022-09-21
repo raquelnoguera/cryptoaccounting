@@ -1,5 +1,5 @@
 '''
-Used to get the current value of a token from Packake Swap.
+Used to get the current value of a token from Pancake Swap.
 '''
 
 from mlogger import logger
@@ -10,7 +10,7 @@ logger = logger.get_module_logger(__name__)
 
 BASE_URI = "https://api.pancakeswap.info/api/v2/tokens/"
 
-class PankakeSwap(object):
+class PancakeSwap(object):
 
     def __init__(self, tokens_list):
         self._baseuri = BASE_URI

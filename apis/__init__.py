@@ -18,12 +18,19 @@ These APIs are used to:
 - tokenscan: retrieve the list of tokens / coins for the provided wallet / contract address
 '''
 
-from .pancake import PankakeSwap
+from .pancake import PancakeSwap
 from .coingecko import CoinGecko
 from .tokenscanner import Scan
 
 # Supported Networks
 networks = {
+    'avalanche': {
+        'id': 'avalanche',
+        'symbol': 'AVAX',
+        'decimals': 18,
+        'chain': 'avalanche',
+        'api': 'https://api.snowtrace.io/api'
+    },
     'binance': {
         'id': 'binance',
         'symbol': 'BNB',

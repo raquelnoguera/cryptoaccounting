@@ -3,7 +3,7 @@
 This is a small project that I have done to get the current value of a 
 crypto investment portfolio.
 
-It supports two uses:
+It supports two use cases:
 
 * List the tokens of interest in the ***"tokens.json*** file
 in the root folder and this script will retrieve the value of 
@@ -17,7 +17,7 @@ ones above. Have a look at the api module to add additional chains.
 
 *ToDo:* 
 1. *Retrive balance of chain coin (e.g. ETH for Ethereum, BNB for Binance,
-MATIC for Polygon, etc.) for use 2 above.*
+MATIC for Polygon, etc.) for use case 2 above.*
 2. *Get the actual amount of each token for use 2 above (now it only gets
 the token movements of the account).*
 
