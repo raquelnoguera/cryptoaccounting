@@ -13,7 +13,7 @@ The list of tokens can be specified in two ways:
 import sys
 from mlogger import logger
 from pathlib import Path
-from apis import networks, PankakeSwap, CoinGecko, Scan
+from apis import networks, PancakeSwap, CoinGecko, Scan
 import json
 import re
 
@@ -115,7 +115,7 @@ if __name__ == '__main__':
             cg = CoinGecko(lists_of_tokens[api])
             tokens_prices.extend(cg.get_prices())
         elif api == "pancakeswap":
-            pcs = PankakeSwap(lists_of_tokens[api])
+            pcs = PancakeSwap(lists_of_tokens[api])
             tokens_prices.extend(pcs.get_prices())
         ## else: # "none" case
 
