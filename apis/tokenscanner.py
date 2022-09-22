@@ -24,6 +24,7 @@ class Scan(object):
         @param apikey:  Key for the BscScan API
         @param address: wallet address of the BSC
         '''
+        self._ua = 'CryptoAccounting'
         self.network = network
         self._key = apikey
         self._address = address
@@ -39,7 +40,13 @@ class Scan(object):
             'action': 'balance',
             'address': self._address
         }
-        res = requests.get(self.network['api'], params=payload)
+        headers = {
+            'User-Agent': self._ua,
+            'Connection': 'keep-alive',
+            'Accept': '*/*',
+            'Host': self.network['host']
+        }
+        res = requests.get(self.network['api'], headers=headers, params=payload)
         logger.debug(f"Status code of response: {res.status_code}")
         if (res.status_code == requests.codes.ok):
             # Assume that the response is json and iterate the response
@@ -82,8 +89,15 @@ class Scan(object):
             'endblock': 999999999,
             'sort': 'asc'
         }
-        res = requests.get(self.network['api'], params = payload)
-        logger.debug(f"Status code of response: {res.status_code}")
+        headers = {
+            'User-Agent': self._ua,
+            'Connection': 'keep-alive',
+            'Accept': '*/*',
+            'Host': self.network['host']
+        }
+        res = requests.get(self.network['api'], headers = headers, params = payload)
+        logger.info(f"Status code of response: {res.status_code}")
+        logger.debug(res.content)
         if(res.status_code == requests.codes.ok):
             # Assume that the response is json and iterate the response
             try:

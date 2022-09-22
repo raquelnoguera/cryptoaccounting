@@ -1,28 +1,3 @@
-'''
-These APIs are used to:
-
- - coingecko and pancake: retrieve token information.
-    They consume a list of token data to iterate and return a list of json objects (one per token) with the
-    following schema, inspired in the coingecko API:
-
-        {
-            "name": "string",
-            "address": "string",
-            "usd": "number",
-            "usd_market_cap": "number",
-            "usd_24h_vol": "number",
-            "usd_24h_change": "number",
-            "last_updated_at": "integer"
-        }
-
-- tokenscan: retrieve the list of tokens / coins for the provided wallet / contract address
-'''
-
-from .pancake import PancakeSwap
-from .coingecko import CoinGecko
-from .tokenscanner import Scan
-
-# Supported Networks
 networks = {
     'avalanche': {
         'id': 'avalanche',
